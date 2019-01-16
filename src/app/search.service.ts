@@ -16,7 +16,7 @@ export class SearchService {
     
     //Fetch cars directly from api.
     getCarsAPI(query){
-        var url = "https://pixabay.com/api/?key=10981579-81f76eb31bb70b61c3c1dbf56&q=";         
+        var url = "https://pixabay.com/api/?key=keyyyy&q=";         
         var end = "&image_type=photo&pretty=true";
         return this.http.get(url + query + end); 
     }
