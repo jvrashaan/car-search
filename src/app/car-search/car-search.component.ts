@@ -17,8 +17,11 @@ export class CarSearchComponent implements OnInit {
   Cars2 = <any>[];
   queries = [];
   results = <any>[];
+  noResults;
   
   companies = ['Acura', 'Alfa Romeo', 'Aston Martin', 'Audi', 'Bentley', 'BMW', 'Bugatti', 'Buick', 'Cadillac', 'Chevrolet', 'Chrylser Cars', 'Citroen', 'Dodge', 'Ferrari', 'Fiat', 'Ford', 'GMC', 'Honda', 'Hyundai', 'infiniti', 'Jaguar', 'Jeep', 'Kia', 'Koenigsegg', 'Lamborghini', 'Land Rover', 'Lexus', 'Maserati', 'Mazda', 'McLaren', 'Mercedes-Benz', 'Mini Cooper', 'Mitsubishi', 'Nissan', 'Pagani', 'Peugeot', 'Porsche', 'Ram Trucks', 'Renault', 'Rolls Royce', 'Saab', 'Subaru', 'Suzuki', 'Tesla', 'Toyota', 'Volkswagen', 'Volvo'];
+  
+  classes = ['economy car', 'economy', 'traffic', 'cab', 'luxury car', 'luxury', 'supercar', 'hypercar', 'sportcar', 'limousine', 'muscle car', 'pony car', 'sports sedan', 'racing car', 'hot rod', 'low rider', 'drift car', 'rally car', 'dragster', 'offroad car', 'military car', 'kit car', 'go kart', 'grand prix car', 'formula one race car', 'stock car', 'vintage car', 'classic car', 'taxi cab', 'car', 'cars', 'vehicle', 'antique car', 'sport coupe', 'cabriolet', 'auto', 'automobile', 'suv', 'pickup truck', 'pickup', 'truck', 'trucks', 'vehicles', 'pickups', 'suvs', 'automobiles', 'cabriolets', 'convertibles', 'convertible'];
   
   message: any;
   subscription: Subscription;
@@ -132,51 +135,85 @@ export class CarSearchComponent implements OnInit {
   
   //initialize results at startup
   ngOnInit() {
-    this.getCars("sports cars");
+    this.getCars("sports car");
   }
   
   //Get Cars from database or API
   getCars(query) {
     var q = query.toLowerCase();
-    //Check if cache needs to be cleared.
-    if(this.isFull()){
-        //clear oldest search
-        var temp = this.queries.shift();
-        this.deleteCars(temp);
+    //Check if the query is car related.
+    if(!this.isGood(query)){
+        this.noResults = "Error, incorrect search term. Please search another term.";
+        
+    } else {
+        this.noResults = "";
+        //Check if cache needs to be cleared.
+        if(this.isFull()){
+            //clear oldest search
+            var temp = this.queries.shift();
+            this.deleteCars(temp);
+        }
+
+        //check if search is in the cache already, if not make api call. 
+        try{
+            this.searchService.getCarsDB(q)
+                .subscribe(resp => {
+                    //console.log(resp, "res");
+                    this.Cars = resp;
+                    //check if data is valid
+                    if(this.validate(this.Cars)){
+                        //console.log("Data found in DB");
+                    } else {
+                        //get data from api call
+                        try {
+                            this.searchService.getCarsAPI(q)
+                                .subscribe(resp => {
+                                    //console.log(resp, "res");
+                                    this.Cars = resp['hits'];
+                                    this.saveCars(this.Cars, q);
+                                },
+                                    error => {
+                                        console.log(error, "error");
+                                    })
+                            } catch (e) {
+                                console.log(e);
+                            }
+                    }
+                },
+                    error => {
+                        console.log(error, "error");
+                    })
+            } catch (e) {
+                console.log(e);
+            }
+        }
     }
     
-    //check if search is in the cache already, if not make api call. 
-    try{
-        this.searchService.getCarsDB(q)
-            .subscribe(resp => {
-                //console.log(resp, "res");
-                this.Cars = resp;
-                //check if data is valid
-                if(this.validate(this.Cars)){
-                    //console.log("Data found in DB");
-                } else {
-                    //get data from api call
-                    try {
-                        this.searchService.getCarsAPI(q)
-                            .subscribe(resp => {
-                                //console.log(resp, "res");
-                                this.Cars = resp['hits'];
-                                this.saveCars(this.Cars, q);
-                            },
-                                error => {
-                                    console.log(error, "error");
-                                })
-                        } catch (e) {
-                            console.log(e);
-                        }
-                }
-            },
-                error => {
-                    console.log(error, "error");
-                })
-        } catch (e) {
-            console.log(e);
+    //Checks if the query is car related.
+    isGood(query):boolean{
+        var temp = query.split(" ");
+        var array = <any>[];
+        
+        for(var i = 0; i < temp.length; i++){
+            array.push(temp[i].toLowerCase());
         }
+        
+        for(var i = 0; i < array.length; i++){
+            var word = array[i];
+            for(var j = 0; j < this.companies.length; j++){
+                if(word == this.companies[j].toLowerCase()){
+                    return true;
+                }
+            }
+            
+            for(var k = 0; k < this.classes.length; k++){
+                if(word == this.classes[k]){
+                    return true;
+                }
+            }
+        }
+        
+        return false;
     }
     
     //Save to Database

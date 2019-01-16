@@ -3,6 +3,9 @@
         <button (click)="getCars(query)">Search </button>
         <input [(ngModel)]="query">
     </div>
+    <div *ngIf="noResults" class="error">
+        {{noResults}}
+    </div>
     <div *ngIf="companies">
         <h1 class="title">Popular Auto Manufacturers</h1>
         <hr style="BORDER-RIGHT: medium none; BORDER-TOP: black 1px solid; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; HEIGHT: 1px; width: 45%">

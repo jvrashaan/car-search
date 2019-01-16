@@ -86,6 +86,11 @@ button:hover{
     margin-right: 3%;
 }
 
+.error{
+    text-align: center;
+    color: red;
+}
+
 @media (min-width: 768px){
     .hits li{
         width:33.33% !important;

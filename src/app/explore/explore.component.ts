@@ -10,7 +10,7 @@ import { Message2Service } from '../message2.service';
 })
 export class ExploreComponent implements OnInit {
 
-  classes = ['Economy Cars', 'Luxury Cars', 'Supercar', 'Hypercar', 'Sportcar', 'Limousine', 'Muscle cars', 'Pony cars', 'Sports sedans', 'Racing cars', 'Hot Rod', 'Low Rider', 'Drift Cars', 'Rally Cars', 'Dragster', 'Offroad Cars', 'Military cars', 'Kit Cars', 'Go Karts', 'Grand Prix Cars', 'Formula One Race Cars', 'Stock Cars', 'SUVS', 'Pickup Trucks'];
+  classes = ['Economy Cars', 'Luxury Cars', 'Supercar', 'Hypercar', 'Sportcar', 'Limousine', 'Muscle cars', 'Pony cars', 'Sports sedans', 'Racing cars', 'Hot Rod', 'Low Rider', 'Drift Cars', 'Rally Cars', 'Dragster', 'Offroad Cars', 'Military cars', 'Kit Cars', 'Go Karts', 'Grand Prix Cars', 'Formula One Race Cars', 'Stock Cars', 'SUV', 'Pickup Trucks'];
   
   Cars2 = <any>[];
   message: any;
