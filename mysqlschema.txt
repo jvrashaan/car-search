@@ -1,0 +1,6 @@
+CREATE DATABASE CARPHOTOS;
+USE DATABASE CARPHOTOS;
+
+CREATE TABLE PHOTOS (webformatURL varchar(300), id int(10), query varchar(30), tags varchar(100), user varchar(30));
+
+CREATE TABLE SAVED (webformatURL varchar(300), id int(10), query varchar(30), tags varchar(100), user varchar(30)); 
