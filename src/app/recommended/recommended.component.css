@@ -1,0 +1,71 @@
+.body{
+    margin-top: 100px;
+}
+
+.title {
+    text-align: center;
+}
+
+.hits li img {
+    border-radius: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+    width: 95%;
+    display: inline-block;
+    position:relative;
+}
+
+.hits{
+    list-style-type: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.hits li{
+    float: left;
+    width:33.33%;
+}
+
+button {
+    border-radius: 5px;
+}
+
+button:hover{
+    color: darkcyan;
+}
+
+.cars{
+    margin-left: 4%;
+    margin-right: 3%;
+}
+
+.saveCars{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+    /*margin-left: 37%;*/
+}
+
+.under{
+    text-align: center;
+}
+
+@media (min-width: 768px){
+    .hits li{
+        width:33.33% !important;
+    }
+}
+
+@media (max-width: 767px){
+    .hits li{
+        width:50% !important;
+    }
+}
+
+@media (max-width: 500px){
+    .hits li{
+        width:100% !important;
+    }
+}

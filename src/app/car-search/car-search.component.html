@@ -1,0 +1,26 @@
+<div class="body">
+    <div class="search">
+        <button (click)="getCars(query)">Search </button>
+        <input [(ngModel)]="query">
+    </div>
+    <div *ngIf="companies">
+        <h1 class="title">Popular Auto Manufacturers</h1>
+        <hr style="BORDER-RIGHT: medium none; BORDER-TOP: black 1px solid; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; HEIGHT: 1px; width: 45%">
+        <ul class="tags">
+            <li *ngFor="let auto of companies"><h5><button (click)="getCars(auto)">{{auto}}</button></h5></li>
+        </ul>
+    </div>
+    
+    <div class="cars" *ngIf="Cars">
+        <ul class="hits">
+            <li *ngFor="let car of Cars">
+                <img src={{car.webformatURL}} />
+                <div class="under">
+                    <h5>Author: {{car.user}}</h5>
+                    <button class="saveCars" (click)="saveCar(car.webformatURL, car.tags, car.id, car.user)">Save</button>
+                    <hr style="BORDER-RIGHT: medium none; BORDER-TOP: black 1px solid; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; HEIGHT: 1px; width: 50%">
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

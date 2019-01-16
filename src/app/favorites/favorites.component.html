@@ -1,0 +1,26 @@
+<div class="body">
+    <div>
+        <div class="title" *ngIf="!noCars">
+            <h2> Saved Photos</h2>
+            <hr style="BORDER-RIGHT: medium none; BORDER-TOP: black 1px solid; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; HEIGHT: 1px; width: 45%">
+        </div>
+        <div class="cars" *ngIf="Cars">
+                <ul class="saved" style="list-style-type: none;">
+                    <li *ngFor="let car of Cars">
+                        <img src={{car.webformatURL}} />
+                        <div class="under">
+                            <h5>Author: {{car.user}}</h5>
+                            <button class="deleteCars" (click)="removeCar(car.webformatURL)">Remove</button>
+                            <hr style="BORDER-RIGHT: medium none; BORDER-TOP: black 1px solid; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; HEIGHT: 1px; width: 50%">
+                        </div>
+                    </li>
+                </ul>
+        </div>
+    </div>
+    <div class="default" *ngIf="noCars">
+        <div class="title">
+            <h2> You don't have any saved photos yet, have a look around and see what you like!</h2>
+            <hr style="BORDER-RIGHT: medium none; BORDER-TOP: black 1px solid; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; HEIGHT: 1px; width: 45%">
+        </div>
+    </div>
+</div>

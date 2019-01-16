@@ -1,0 +1,49 @@
+.body{
+    margin-top: 100px;
+}
+
+.title {
+    text-align: center;
+}
+
+.cars li img {
+    border-radius: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    width: 95%;
+    display: inline-block;
+    position:relative;
+}
+
+.cars li button:hover{
+    color:cornflowerblue;
+}
+
+.cars{
+    list-style-type: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.cars li{
+    float: left;
+    width:33.33%;
+}
+
+.under {
+    text-align: center;
+}
+
+button {
+    border-radius: 5px;
+}
+
+.saveCars{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+    /*margin-left: 37%;*/
+}

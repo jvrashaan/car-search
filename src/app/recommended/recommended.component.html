@@ -1,0 +1,19 @@
+<div class="body">
+    <div>
+        <h1 class="title">Recommended For You</h1>
+        <hr style="BORDER-RIGHT: medium none; BORDER-TOP: black 1px solid; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; HEIGHT: 1px; width: 45%">
+    </div>
+    <div class="cars" *ngIf="Cars">
+            <ul class="hits">
+                <li *ngFor="let car of Cars">
+                    <img src={{car.webformatURL}} />
+                    <br />
+                    <div class="under">
+                        <h5>Author: {{car.user}}</h5>
+                        <button class="saveCars" (click)="sendSave(car.webformatURL, car.tags, car.id)">Save</button>
+                        <hr style="BORDER-RIGHT: medium none; BORDER-TOP: black 1px solid; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; HEIGHT: 1px; width: 45%">
+                    </div>
+                </li>
+            </ul>
+    </div>
+</div>
