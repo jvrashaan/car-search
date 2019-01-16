@@ -1,6 +1,8 @@
 # CarSearch
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.5.
+MysqlServer is a Express/Node jS project and must be copied and removed from the repo once downloaded in order to run.
+Mysql installed is required for the server to run, a schema of the database is included.
 
 ## Development server
 
