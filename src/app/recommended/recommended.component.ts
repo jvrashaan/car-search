@@ -78,7 +78,7 @@ export class RecommendedComponent implements OnInit {
     }
     for(var j = 0; j < this.classes.length; j++){
         if(tag == this.classes[i]){
-            if(!this.exists){
+            if(!this.exists(tag)){
                 return true;
             }
         }
