@@ -13,7 +13,8 @@ var con = mysql.createConnection({
         host: "localhost",
         user: "root",
         password: "giggaman123",
-        database: "CARPHOTOS"
+        database: "CARPHOTOS",
+	multipleStatements: true
     });
 
 exports.con = con;

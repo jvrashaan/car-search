@@ -12,7 +12,7 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
         host: "localhost",
         user: "root",
-        password: "giggaman123",
+        password: "#",
         database: "CARPHOTOS",
 	multipleStatements: true
     });
@@ -55,7 +55,7 @@ app.use(function(err, req, res, next) {
 	res.locals.connection = mysql.createConnection({
 		host: 'localhost',
 		user: 'root',
-		password: 'giggaman123',
+		password: '#',
 		database: 'CARPHOTOS'
 	    });
 	res.locals.connect();
